@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" style=""><head>
+<html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>DRIPIFY | Redefining Clothing Manufacturing</title>
@@ -13,130 +13,99 @@
       font-family: 'Inter', sans-serif;
     }
   </style>
-<style data-purpose="custom-animations">@keyframes subtle-zoom {
-    0% {
-        transform: scale(1);
-        } 100% {
-        transform: scale(1.08);
-        }
+<style data-purpose="custom-animations">
+    @keyframes subtle-zoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
     }
-@keyframes fade-in-up {
-    from {
+    @keyframes fade-in-up {
+      from {
         opacity: 0;
         transform: translateY(30px);
-        } to {
+      }
+      to {
         opacity: 1;
         transform: translateY(0);
-        }
+      }
     }
-@keyframes slide-in-left {
-    from {
+    @keyframes slide-in-left {
+      from {
         opacity: 0;
         transform: translateX(-50px);
-        } to {
+      }
+      to {
         opacity: 1;
         transform: translateX(0);
-        }
+      }
     }
-@keyframes pulse-subtle {
-    0%, 100% {
-        transform: scale(1);
-        } 50% {
-        transform: scale(1.02);
-        }
+    @keyframes pulse-subtle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
     }
-.animate-hero-bg {
-    animation: subtle-zoom 20s ease-out forwards
+    
+    .animate-hero-bg {
+      animation: subtle-zoom 20s ease-out forwards;
     }
-.animate-fade-in-up {
-    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards
+    .animate-fade-in-up {
+      animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-.delay-100 {
-    animation-delay: 0.1s
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+
+    .nav-link {
+      position: relative;
     }
-.delay-200 {
-    animation-delay: 0.2s
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: currentColor;
+      transition: width 0.3s ease;
     }
-.delay-300 {
-    animation-delay: 0.3s
+    .nav-link:hover::after {
+      width: 100%;
     }
-.delay-400 {
-    animation-delay: 0.4s
+
+    .card-glow:hover {
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
     }
-.delay-500 {
-    animation-delay: 0.5s
+    
+    .reveal-on-scroll {
+      opacity: 0;
     }
-.nav-link {
-    position: relative
+    .reveal-on-scroll.revealed {
+      animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-.nav-link::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: currentColor;
-    transition: width 0.3s ease
+
+    .reveal-slide-left.revealed {
+      animation: slide-in-left 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-.nav-link:hover::after {
-    width: 100%
+
+    .pulse-animation {
+      animation: pulse-subtle 3s infinite ease-in-out;
     }
-.card-glow:hover {
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1)
+
+    .stagger-item {
+      opacity: 0;
     }
-.reveal-on-scroll {
-    opacity: 0
+    .stagger-item.revealed {
+      animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-.reveal-on-scroll.revealed {
-    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards
+
+    .transition-custom {
+      transition: all 0.3s ease-in-out;
     }
-.reveal-slide-left.revealed {
-    animation: slide-in-left 1s cubic-bezier(0.16, 1, 0.3, 1) forwards
-    }
-.pulse-animation {
-    animation: pulse-subtle 3s infinite ease-in-out
-    }
-.stagger-item {
-    opacity: 0
-    }
-.stagger-item.revealed {
-    animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards
-    }
-.transition-custom {
-    transition: all 0.3s ease-in-out
-    }
-/* Interactive Background Styles */
-#interactive-canvas-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    background-color: #0a0a0a;
-    /* Darker base for fabric feel */
-    overflow: hidden
-    }
-/* Fabric Texture Overlay */
-#interactive-canvas-container::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD-NGozmbNGSuiVoVYmJbYLc7GMv_k58Qy018uOOhkaIj82_5ucvBwqifc_WVOtQbkJ84EfMmTBQAmMPY5rmHhi-cyjrlFDVQ-1MlcMCbMEKnPTFH_MPHAGtmzwrCVXu8JgdM0RyVjXTDVo16f585hQzk5XUBhLIKfljh2msRZ27WuXtdnHCEzF8gi8Nm-mNeNwqKm8D4as0FDT7VrGQBfB0SQn6MrC7c9FsBgeUeXV1aJzkgvJoeOEQome3wiA6Megjmp4Olu0JBfs);
-    opacity: 0.03;
-    pointer-events: none
-    }</style>
+  </style>
 </head>
 <body class="bg-white text-gray-900 antialiased">
-<!-- BEGIN: Interactive Background -->
-<div id="interactive-canvas-container">
-<canvas id="displacement-canvas"></canvas>
-</div>
-<!-- END: Interactive Background -->
 <!-- BEGIN: MainHeader -->
-<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
 <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
 <!-- Logo -->
 <div class="flex-shrink-0">
@@ -177,7 +146,9 @@
 </div>
 <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
 <div class="max-w-2xl text-white">
-<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight animate-fade-in-up">DRIPIFY : WHERE DESIGNS MEETS COMFORT</h1>
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight animate-fade-in-up">
+            Redefining Clothing Manufacturing
+          </h1>
 <p class="text-xl md:text-2xl font-light mb-10 text-gray-200 animate-fade-in-up delay-200">
             Quality. Speed. Innovation.
           </p>
@@ -191,13 +162,13 @@
 </section>
 <!-- END: HeroSection -->
 <!-- BEGIN: OurCollections -->
-<section class="py-24 bg-white/60 backdrop-blur-sm" data-purpose="collections-grid" id="collections">
+<section class="py-24 bg-white" data-purpose="collections-grid" id="collections">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <h2 class="text-3xl md:text-4xl font-bold mb-12 reveal-on-scroll">Our Collections</h2>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<!-- Streetwear Card (Added back missing card from sample) -->
-<div class="reveal-on-scroll group relative overflow-hidden rounded-xl bg-gray-100 h-[500px] transition-custom card-glow">
-<img alt="Streetwear" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9I_j8iEre5O27a-8K639zF7S2r7K6I5Y7uFm9pW1S6x7mD6j1L2z3R4B5C6D7E8F9G0H1I2J3K4L5M6N7O8P9Q0R1S2T3U4V5W6X7Y8Z9"/>
+<!-- Streetwear Card -->
+<div class="reveal-on-scroll delay-100 group relative overflow-hidden rounded-xl bg-gray-100 h-[500px] transition-custom card-glow">
+<img alt="Streetwear" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY3vsgDXo2ofD88e_ZCdpNypT49FRXo3LnCHfPMXLTAipCtSgfWPSVonMHrU5na__8SVjl-ZqoAjJcsXZbgIVLWmkGhBYaKynb5rE9z0mAS5hYMzCk8k0W5GAlB4j5PZq1lwn6AjmdyuF8J6vS0-ESdCAM0OdhIJRxcMwBx32Huh9Dlp8kcW2eCRCyYDWd3W-6YMr1Vwug2LjqtG23udtnYY6gkq-nFyw8k2bbhjs8n3dwZTGNKk6v4PTG5EzTxK5k2KQhDU1iOGXL"/>
 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 <div class="absolute bottom-0 left-0 p-8 w-full text-center">
 <h3 class="text-2xl font-bold text-white mb-4">Streetwear</h3>
@@ -233,7 +204,7 @@
 </section>
 <!-- END: OurCollections -->
 <!-- BEGIN: ManufacturingExcellence -->
-<section class="py-24 bg-neutral-900/80 backdrop-blur-md text-white overflow-hidden relative" data-purpose="manufacturing-details" id="services">
+<section class="py-24 bg-neutral-900 text-white overflow-hidden" data-purpose="manufacturing-details" id="services">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <h2 class="text-3xl md:text-4xl font-bold mb-16 reveal-on-scroll">Manufacturing Excellence</h2>
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -256,19 +227,19 @@
 <ul class="space-y-3">
 <li class="flex items-center space-x-3 text-gray-400 stagger-item">
 <svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span class="">High-quality precision expression</span>
+<span>High-quality precision expression</span>
 </li>
 <li class="flex items-center space-x-3 text-gray-400 stagger-item">
 <svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span class="">Quality approved solutions</span>
+<span>Quality approved solutions</span>
 </li>
 <li class="flex items-center space-x-3 text-gray-400 stagger-item">
 <svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span class="">Precision and accountability</span>
+<span>Precision and accountability</span>
 </li>
 <li class="flex items-center space-x-3 text-gray-400 stagger-item">
 <svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span class="">Quality assurance monitored in real-time</span>
+<span>Quality assurance monitored in real-time</span>
 </li>
 </ul>
 </div>
@@ -278,23 +249,26 @@
 </section>
 <!-- END: ManufacturingExcellence -->
 <!-- BEGIN: QuoteCTA -->
-<section class="bg-blue-700 py-12 relative" data-purpose="call-to-action" id="quote">
+<section class="bg-blue-700 py-12" data-purpose="call-to-action" id="quote">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <a class="block w-full text-center py-6 group pulse-animation" href="#">
-<span class="text-white text-4xl md:text-6xl font-black uppercase tracking-widest group-hover:opacity-90 transition-opacity">quote </span>
+<span class="text-white text-4xl md:text-6xl font-black uppercase tracking-widest group-hover:opacity-90 transition-opacity">
+            Get a Quote
+          </span>
 </a>
 </div>
 </section>
 <!-- END: QuoteCTA -->
 </main>
 <!-- BEGIN: MainFooter -->
-<footer class="bg-black/95 text-white pt-20 pb-10" data-purpose="site-footer" id="contact">
+<footer class="bg-black text-white pt-20 pb-10" data-purpose="site-footer" id="contact">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
 <!-- Brand Info -->
 <div>
 <h2 class="text-3xl font-black mb-6">DRIPIFY</h2>
 <div class="flex space-x-5">
+<!-- Social Icons Placeholders -->
 <a class="text-gray-400 hover:text-white" href="#"><svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg></a>
 <a class="text-gray-400 hover:text-white" href="#"><svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
 </div>
@@ -303,27 +277,27 @@
 <div>
 <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6">Social</h3>
 <ul class="space-y-2 text-gray-400">
-<li class=""><a class="hover:text-white" href="#">@dmeanears</a></li>
-<li class=""><a class="hover:text-white" href="#">Contact Us</a></li>
+<li><a class="hover:text-white" href="#">@dmeanears</a></li>
+<li><a class="hover:text-white" href="#">Contact Us</a></li>
 </ul>
 </div>
 <!-- Contact Info -->
 <div>
 <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6">Contact</h3>
 <ul class="space-y-2 text-gray-400">
-<li class="">+91 XXXXXXXXXX</li>
-<li class="">www.dripifymanufacturing.com</li>
+<li>+90 5006 158-390</li>
+<li>www.dripifymanufacturing.com</li>
 </ul>
 </div>
 </div>
 <div class="border-t border-gray-800 pt-10 text-center text-sm text-gray-500">
-<p class="">© 2023 DRIPIFY Manufacturing. All rights reserved.</p>
+<p>© 2023 DRIPIFY Manufacturing. All rights reserved.</p>
 </div>
 </div>
 </footer>
 <!-- END: MainFooter -->
 <script data-purpose="interactivity">
-    // --- Scroll Animations ---
+    // Intersection Observer for scroll animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -334,6 +308,7 @@
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed');
           
+          // If it's a container for stagger items, reveal them with a delay
           if (entry.target.classList.contains('space-y-12')) {
             const items = entry.target.querySelectorAll('.stagger-item');
             items.forEach((item, index) => {
@@ -346,11 +321,14 @@
       });
     }, observerOptions);
 
+    // Register elements to observe
     document.querySelectorAll('.reveal-on-scroll, .reveal-slide-left').forEach(el => observer.observe(el));
     
+    // Specifically target the feature list container for staggered fade-in
     const featureContainer = document.querySelector('#services .space-y-12');
     if (featureContainer) observer.observe(featureContainer);
 
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -362,168 +340,5 @@
         }
       });
     });
-
-    // --- Enhanced Interactive Background (Textile Waves + Threads) ---
-    const canvas = document.getElementById('displacement-canvas');
-    const ctx = canvas.getContext('2d');
-    
-    let waves = [];
-    let particles = [];
-    const waveCount = 5;
-    const particleCount = 40;
-    const mouse = { x: null, y: null, targetX: 0, targetY: 0, speed: 0.05 };
-    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    function setCanvasSize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    class Wave {
-      constructor(index) {
-        this.index = index;
-        this.points = [];
-        this.segmentCount = 10;
-        this.amplitude = 40 + (index * 15);
-        this.speed = 0.002 + (index * 0.001);
-        this.yOffset = (canvas.height / (waveCount + 1)) * (index + 1);
-        this.phase = index * Math.PI / 4;
-        this.color = `rgba(30, 41, 59, ${0.1 + (index * 0.05)})`; // Monochromatic slate shades
-      }
-
-      draw(time) {
-        ctx.beginPath();
-        ctx.strokeStyle = this.color;
-        ctx.lineWidth = 1;
-        
-        for (let i = 0; i <= this.segmentCount; i++) {
-          const x = (canvas.width / this.segmentCount) * i;
-          
-          // Wave movement
-          const waveY = Math.sin(x * 0.002 + time * this.speed + this.phase) * this.amplitude;
-          
-          // Mouse influence
-          let mouseFactor = 0;
-          if (mouse.x !== null) {
-            const dx = x - mouse.x;
-            const dist = Math.abs(dx);
-            if (dist < 400) {
-              mouseFactor = (1 - dist / 400) * (mouse.y - this.yOffset) * 0.2;
-            }
-          }
-
-          const y = this.yOffset + waveY + mouseFactor;
-
-          if (i === 0) ctx.moveTo(x, y);
-          else {
-            // Bezier curve smoothing
-            const prevX = (canvas.width / this.segmentCount) * (i - 1);
-            const cpX = (prevX + x) / 2;
-            ctx.quadraticCurveTo(prevX, y, cpX, y);
-          }
-        }
-        ctx.stroke();
-      }
-    }
-
-    class ThreadParticle {
-      constructor() {
-        this.init();
-      }
-
-      init() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = Math.random() * 0.8 + 0.2; // Mostly drifting downwards like lint/thread
-        this.length = Math.random() * 20 + 10;
-        this.opacity = Math.random() * 0.3 + 0.1;
-        this.thickness = Math.random() * 1 + 0.5;
-        this.angle = Math.random() * Math.PI * 2;
-        this.angleVel = (Math.random() - 0.5) * 0.02;
-      }
-
-      update() {
-        if (motionPreference.matches) return;
-        
-        this.x += this.vx;
-        this.y += this.vy;
-        this.angle += this.angleVel;
-
-        // Wrap around
-        if (this.y > canvas.height + 50) this.y = -50;
-        if (this.x > canvas.width + 50) this.x = -50;
-        if (this.x < -50) this.x = canvas.width + 50;
-
-        // Mouse push
-        if (mouse.x !== null) {
-          const dx = this.x - mouse.x;
-          const dy = this.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            const force = (1 - dist / 150) * 2;
-            this.x += (dx / dist) * force;
-            this.y += (dy / dist) * force;
-          }
-        }
-      }
-
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.beginPath();
-        ctx.moveTo(-this.length/2, 0);
-        ctx.bezierCurveTo(-this.length/4, 2, this.length/4, -2, this.length/2, 0);
-        ctx.strokeStyle = `rgba(148, 163, 184, ${this.opacity})`;
-        ctx.lineWidth = this.thickness;
-        ctx.stroke();
-        ctx.restore();
-      }
-    }
-
-    function initSystem() {
-      waves = [];
-      particles = [];
-      for (let i = 0; i < waveCount; i++) waves.push(new Wave(i));
-      for (let i = 0; i < particleCount; i++) particles.push(new ThreadParticle());
-    }
-
-    let lastTime = 0;
-    function animate(time) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Update mouse smoothing
-      mouse.x += (mouse.targetX - mouse.x) * mouse.speed;
-      mouse.y += (mouse.targetY - mouse.y) * mouse.speed;
-
-      waves.forEach(wave => wave.draw(time));
-      
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('mousemove', (e) => {
-      mouse.targetX = e.clientX;
-      mouse.targetY = e.clientY;
-      if (mouse.x === null) {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      }
-    });
-
-    window.addEventListener('resize', () => {
-      setCanvasSize();
-      initSystem();
-    });
-
-    // Initialize
-    setCanvasSize();
-    initSystem();
-    requestAnimationFrame(animate);
   </script>
 </body></html>
