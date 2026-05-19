@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DRIPIFY | Redefining Clothing Manufacturing</title>
+<!-- Tailwind CSS V3 CDN with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter for a clean sans-serif aesthetic -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="typography">
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+<style data-purpose="custom-animations">@keyframes subtle-zoom {
+    0% {
+        transform: scale(1);
+        } 100% {
+        transform: scale(1.08);
+        }
+    }
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+        } to {
+        opacity: 1;
+        transform: translateY(0);
+        }
+    }
+@keyframes slide-in-left {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+        } to {
+        opacity: 1;
+        transform: translateX(0);
+        }
+    }
+@keyframes pulse-subtle {
+    0%, 100% {
+        transform: scale(1);
+        } 50% {
+        transform: scale(1.02);
+        }
+    }
+.animate-hero-bg {
+    animation: subtle-zoom 20s ease-out forwards
+    }
+.animate-fade-in-up {
+    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards
+    }
+.delay-100 {
+    animation-delay: 0.1s
+    }
+.delay-200 {
+    animation-delay: 0.2s
+    }
+.delay-300 {
+    animation-delay: 0.3s
+    }
+.delay-400 {
+    animation-delay: 0.4s
+    }
+.delay-500 {
+    animation-delay: 0.5s
+    }
+.nav-link {
+    position: relative
+    }
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: currentColor;
+    transition: width 0.3s ease
+    }
+.nav-link:hover::after {
+    width: 100%
+    }
+.card-glow:hover {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1)
+    }
+.reveal-on-scroll {
+    opacity: 0
+    }
+.reveal-on-scroll.revealed {
+    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards
+    }
+.reveal-slide-left.revealed {
+    animation: slide-in-left 1s cubic-bezier(0.16, 1, 0.3, 1) forwards
+    }
+.pulse-animation {
+    animation: pulse-subtle 3s infinite ease-in-out
+    }
+.stagger-item {
+    opacity: 0
+    }
+.stagger-item.revealed {
+    animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards
+    }
+.transition-custom {
+    transition: all 0.3s ease-in-out
+    }
+/* Interactive Background Styles */
+#interactive-canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    background-color: #0a0a0a;
+    /* Darker base for fabric feel */
+    overflow: hidden
+    }
+/* Fabric Texture Overlay */
+#interactive-canvas-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD-NGozmbNGSuiVoVYmJbYLc7GMv_k58Qy018uOOhkaIj82_5ucvBwqifc_WVOtQbkJ84EfMmTBQAmMPY5rmHhi-cyjrlFDVQ-1MlcMCbMEKnPTFH_MPHAGtmzwrCVXu8JgdM0RyVjXTDVo16f585hQzk5XUBhLIKfljh2msRZ27WuXtdnHCEzF8gi8Nm-mNeNwqKm8D4as0FDT7VrGQBfB0SQn6MrC7c9FsBgeUeXV1aJzkgvJoeOEQome3wiA6Megjmp4Olu0JBfs);
+    opacity: 0.03;
+    pointer-events: none
+    }</style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+<!-- BEGIN: Interactive Background -->
+<div id="interactive-canvas-container">
+<canvas id="displacement-canvas"></canvas>
+</div>
+<!-- END: Interactive Background -->
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+<nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+<!-- Logo -->
+<div class="flex-shrink-0">
+<a class="text-2xl font-black tracking-tighter text-black" href="#">DRIPIFY</a>
+</div>
+<!-- Desktop Navigation -->
+<div class="hidden md:flex items-center space-x-8">
+<a class="nav-link text-sm font-semibold text-gray-900 hover:text-black transition-colors" href="#">Home</a>
+<a class="nav-link text-sm font-semibold text-gray-600 hover:text-black transition-colors" href="#collections">Collections</a>
+<a class="nav-link text-sm font-semibold text-gray-600 hover:text-black transition-colors" href="#services">Services</a>
+<a class="nav-link text-sm font-semibold text-gray-600 hover:text-black transition-colors" href="#sustainability">Sustainability</a>
+<a class="nav-link text-sm font-semibold text-gray-600 hover:text-black transition-colors" href="#contact">Contact</a>
+</div>
+<!-- Header CTA -->
+<div class="hidden md:block">
+<a class="bg-black text-white px-6 py-2.5 rounded-sm text-sm font-bold hover:bg-gray-800 transition-custom" href="#quote">
+          Get a Quote
+        </a>
+</div>
+<!-- Mobile Menu Button -->
+<div class="md:hidden">
+<button class="text-gray-900 p-2" type="button">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</nav>
+</header>
+<!-- END: MainHeader -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="relative h-[80vh] flex items-center overflow-hidden bg-gray-900" data-purpose="hero-section">
+<!-- Background Image -->
+<div class="absolute inset-0">
+<img alt="Textile Factory" class="w-full h-full object-cover opacity-60 animate-hero-bg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDylUopEMlklLP9b99kGD2v20_-t35X4c0REZuojgvPzlvZNI-yHQbAM_AXl2QcMmYeoDFO5Nw9UvRNwOKhIZDzYeMxF-Ujc4HnSm_6_qffvXKZ14JTinPmiMPZ6v0vjv70oMaxlK0xhhopwiOvFHceSZM1BVFSh23bPPGUoqqoMqGYCChW-QK8nu6kmPHh_h-o_7CRSvqcxlK-71kfoK_git1076VrvnyieCOIhGjGn2oTT1n8p4xEWnfLivFrqrKMmbDFbG5ItaXl"/>
+<div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+</div>
+<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+<div class="max-w-2xl text-white">
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight animate-fade-in-up">DRIPIFY : WHERE DESIGNS MEETS COMFORT</h1>
+<p class="text-xl md:text-2xl font-light mb-10 text-gray-200 animate-fade-in-up delay-200">
+            Quality. Speed. Innovation.
+          </p>
+<div class="flex flex-wrap gap-4 animate-fade-in-up delay-300">
+<a class="bg-white text-black px-8 py-4 rounded-sm font-bold text-lg hover:bg-gray-100 transition-custom" href="#collections">
+              Explore Collections
+            </a>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: OurCollections -->
+<section class="py-24 bg-white/60 backdrop-blur-sm" data-purpose="collections-grid" id="collections">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl md:text-4xl font-bold mb-12 reveal-on-scroll">Our Collections</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Streetwear Card (Added back missing card from sample) -->
+<div class="reveal-on-scroll group relative overflow-hidden rounded-xl bg-gray-100 h-[500px] transition-custom card-glow">
+<img alt="Streetwear" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9I_j8iEre5O27a-8K639zF7S2r7K6I5Y7uFm9pW1S6x7mD6j1L2z3R4B5C6D7E8F9G0H1I2J3K4L5M6N7O8P9Q0R1S2T3U4V5W6X7Y8Z9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full text-center">
+<h3 class="text-2xl font-bold text-white mb-4">Streetwear</h3>
+<button class="w-full py-3 px-6 bg-transparent border border-white text-white font-semibold rounded-sm hover:bg-white hover:text-black transition-custom">
+                View Category
+              </button>
+</div>
+</div>
+<!-- Athleisure Card -->
+<div class="reveal-on-scroll delay-200 group relative overflow-hidden rounded-xl bg-gray-100 h-[500px] transition-custom card-glow">
+<img alt="Athleisure" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDevyqrL6boCdklIv4lpxdNkTLFyyy350MbAFx6KUzb3bi6Nq9rqGg14mDG2GoRBbR4n4QJ9vwBTW1WI3uM6tJTUUy7BVjWgAsi1eD6my7PXCemVweyoTLj5FZ38zG5xMKuyEEqYlr_7imp_7Un6WtVvx-SRqeWSn7FspRe2Tm7CSecVgK3RjoyKESw2Ac5ieTNY2nHnwDkBxzp-RLsUkbQ7zztNrtbeIPnfLIg5XGq3IDWfo_Yhfh2HvBByb_2j_DSp26xJdZwJj0h"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full text-center">
+<h3 class="text-2xl font-bold text-white mb-4">Athleisure</h3>
+<button class="w-full py-3 px-6 bg-transparent border border-white text-white font-semibold rounded-sm hover:bg-white hover:text-black transition-custom">
+                View Category
+              </button>
+</div>
+</div>
+<!-- Sustainable Fabrics Card -->
+<div class="reveal-on-scroll delay-300 group relative overflow-hidden rounded-xl bg-gray-100 h-[500px] transition-custom card-glow">
+<img alt="Sustainable Fabrics" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfbW704Hy917rCcEplRpJaHR9SaxmMx7BUR7Y6lBleLnSWxpRgQN7dUTvAI_vv2CdmK-MP8zs0Keg0NwT8R4fKBsAwdwiaka8WCweW4lY2vm9Dk-QQh41EWTf4Au1kJ4-52H--zJ9KrjUH0iLDow9BZPjWRfFHQ-wOnuGBWIrbvwj7NF4dcZClb4JWs-Lzrn7g1qrtOit8W-lP-fv66oduG76LS8uNC4zA9sfnwp5ewxioFiVkCKempGvNnHO4B6Sey94bLzOhVz_L"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full text-center">
+<h3 class="text-2xl font-bold text-white mb-4">Sustainable Fabrics</h3>
+<button class="w-full py-3 px-6 bg-transparent border border-white text-white font-semibold rounded-sm hover:bg-white hover:text-black transition-custom">
+                View Category
+              </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: OurCollections -->
+<!-- BEGIN: ManufacturingExcellence -->
+<section class="py-24 bg-neutral-900/80 backdrop-blur-md text-white overflow-hidden relative" data-purpose="manufacturing-details" id="services">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-3xl md:text-4xl font-bold mb-16 reveal-on-scroll">Manufacturing Excellence</h2>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<!-- Tech Image -->
+<div class="rounded-2xl overflow-hidden shadow-2xl reveal-slide-left">
+<img alt="Precision Sewing Machines" class="w-full h-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGyLBzLJnfs5Hl2j01wyhVitW56pebreJcd60fd0d61dw-ysmNmuL6vVtvZkInCyHPs0k6bZIavNipp6qh39_krqqRXXC7MJS3qUHi3OoBdUTheCM3UEnLGNWy-dJhVK9x-4UF6DSwfd1TGLY4QPjM_PQJN3rL5smXL4f64l6V1p6no2CIE1P1jCfTf8VAGaKJf1HSLIaL6y0W3zWCfl8l-XuFZReYRA4cr10aW9T1qMi12tZLs1M9Ht4ecbWQ4l1pP_0Wr9yMmPHw"/>
+</div>
+<!-- Features Content -->
+<div class="space-y-12">
+<!-- Tech Precision -->
+<div class="space-y-4 stagger-item">
+<h3 class="text-2xl font-bold">Tech-Driven Precision</h3>
+<p class="text-gray-400 leading-relaxed">
+                Our facility integrates advanced automated sewing machinery and neural-measure pattern systems to ensure unparalleled consistency and accuracy in every stitch. We incorporate the latest manufacturing technologies for efficient and scalable production runs.
+              </p>
+</div>
+<!-- Quality Assurance -->
+<div class="space-y-4">
+<h3 class="text-2xl font-bold stagger-item">Quality Assurance</h3>
+<ul class="space-y-3">
+<li class="flex items-center space-x-3 text-gray-400 stagger-item">
+<svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">High-quality precision expression</span>
+</li>
+<li class="flex items-center space-x-3 text-gray-400 stagger-item">
+<svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">Quality approved solutions</span>
+</li>
+<li class="flex items-center space-x-3 text-gray-400 stagger-item">
+<svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">Precision and accountability</span>
+</li>
+<li class="flex items-center space-x-3 text-gray-400 stagger-item">
+<svg class="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="">Quality assurance monitored in real-time</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ManufacturingExcellence -->
+<!-- BEGIN: QuoteCTA -->
+<section class="bg-blue-700 py-12 relative" data-purpose="call-to-action" id="quote">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<a class="block w-full text-center py-6 group pulse-animation" href="#">
+<span class="text-white text-4xl md:text-6xl font-black uppercase tracking-widest group-hover:opacity-90 transition-opacity">quote </span>
+</a>
+</div>
+</section>
+<!-- END: QuoteCTA -->
+</main>
+<!-- BEGIN: MainFooter -->
+<footer class="bg-black/95 text-white pt-20 pb-10" data-purpose="site-footer" id="contact">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+<!-- Brand Info -->
+<div>
+<h2 class="text-3xl font-black mb-6">DRIPIFY</h2>
+<div class="flex space-x-5">
+<a class="text-gray-400 hover:text-white" href="#"><svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg></a>
+<a class="text-gray-400 hover:text-white" href="#"><svg class="h-6 w-6" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+</div>
+</div>
+<!-- Social Handles -->
+<div>
+<h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6">Social</h3>
+<ul class="space-y-2 text-gray-400">
+<li class=""><a class="hover:text-white" href="#">@dmeanears</a></li>
+<li class=""><a class="hover:text-white" href="#">Contact Us</a></li>
+</ul>
+</div>
+<!-- Contact Info -->
+<div>
+<h3 class="text-sm font-bold uppercase tracking-widest text-gray-500 mb-6">Contact</h3>
+<ul class="space-y-2 text-gray-400">
+<li class="">+91 XXXXXXXXXX</li>
+<li class="">www.dripifymanufacturing.com</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 pt-10 text-center text-sm text-gray-500">
+<p class="">© 2023 DRIPIFY Manufacturing. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<script data-purpose="interactivity">
+    // --- Scroll Animations ---
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          
+          if (entry.target.classList.contains('space-y-12')) {
+            const items = entry.target.querySelectorAll('.stagger-item');
+            items.forEach((item, index) => {
+              setTimeout(() => {
+                item.classList.add('revealed');
+              }, index * 150);
+            });
+          }
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-on-scroll, .reveal-slide-left').forEach(el => observer.observe(el));
+    
+    const featureContainer = document.querySelector('#services .space-y-12');
+    if (featureContainer) observer.observe(featureContainer);
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // --- Enhanced Interactive Background (Textile Waves + Threads) ---
+    const canvas = document.getElementById('displacement-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    let waves = [];
+    let particles = [];
+    const waveCount = 5;
+    const particleCount = 40;
+    const mouse = { x: null, y: null, targetX: 0, targetY: 0, speed: 0.05 };
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    function setCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    class Wave {
+      constructor(index) {
+        this.index = index;
+        this.points = [];
+        this.segmentCount = 10;
+        this.amplitude = 40 + (index * 15);
+        this.speed = 0.002 + (index * 0.001);
+        this.yOffset = (canvas.height / (waveCount + 1)) * (index + 1);
+        this.phase = index * Math.PI / 4;
+        this.color = `rgba(30, 41, 59, ${0.1 + (index * 0.05)})`; // Monochromatic slate shades
+      }
+
+      draw(time) {
+        ctx.beginPath();
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 1;
+        
+        for (let i = 0; i <= this.segmentCount; i++) {
+          const x = (canvas.width / this.segmentCount) * i;
+          
+          // Wave movement
+          const waveY = Math.sin(x * 0.002 + time * this.speed + this.phase) * this.amplitude;
+          
+          // Mouse influence
+          let mouseFactor = 0;
+          if (mouse.x !== null) {
+            const dx = x - mouse.x;
+            const dist = Math.abs(dx);
+            if (dist < 400) {
+              mouseFactor = (1 - dist / 400) * (mouse.y - this.yOffset) * 0.2;
+            }
+          }
+
+          const y = this.yOffset + waveY + mouseFactor;
+
+          if (i === 0) ctx.moveTo(x, y);
+          else {
+            // Bezier curve smoothing
+            const prevX = (canvas.width / this.segmentCount) * (i - 1);
+            const cpX = (prevX + x) / 2;
+            ctx.quadraticCurveTo(prevX, y, cpX, y);
+          }
+        }
+        ctx.stroke();
+      }
+    }
+
+    class ThreadParticle {
+      constructor() {
+        this.init();
+      }
+
+      init() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = Math.random() * 0.8 + 0.2; // Mostly drifting downwards like lint/thread
+        this.length = Math.random() * 20 + 10;
+        this.opacity = Math.random() * 0.3 + 0.1;
+        this.thickness = Math.random() * 1 + 0.5;
+        this.angle = Math.random() * Math.PI * 2;
+        this.angleVel = (Math.random() - 0.5) * 0.02;
+      }
+
+      update() {
+        if (motionPreference.matches) return;
+        
+        this.x += this.vx;
+        this.y += this.vy;
+        this.angle += this.angleVel;
+
+        // Wrap around
+        if (this.y > canvas.height + 50) this.y = -50;
+        if (this.x > canvas.width + 50) this.x = -50;
+        if (this.x < -50) this.x = canvas.width + 50;
+
+        // Mouse push
+        if (mouse.x !== null) {
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            const force = (1 - dist / 150) * 2;
+            this.x += (dx / dist) * force;
+            this.y += (dy / dist) * force;
+          }
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+        ctx.beginPath();
+        ctx.moveTo(-this.length/2, 0);
+        ctx.bezierCurveTo(-this.length/4, 2, this.length/4, -2, this.length/2, 0);
+        ctx.strokeStyle = `rgba(148, 163, 184, ${this.opacity})`;
+        ctx.lineWidth = this.thickness;
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    function initSystem() {
+      waves = [];
+      particles = [];
+      for (let i = 0; i < waveCount; i++) waves.push(new Wave(i));
+      for (let i = 0; i < particleCount; i++) particles.push(new ThreadParticle());
+    }
+
+    let lastTime = 0;
+    function animate(time) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Update mouse smoothing
+      mouse.x += (mouse.targetX - mouse.x) * mouse.speed;
+      mouse.y += (mouse.targetY - mouse.y) * mouse.speed;
+
+      waves.forEach(wave => wave.draw(time));
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
+      if (mouse.x === null) {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      setCanvasSize();
+      initSystem();
+    });
+
+    // Initialize
+    setCanvasSize();
+    initSystem();
+    requestAnimationFrame(animate);
+  </script>
+</body></html>
